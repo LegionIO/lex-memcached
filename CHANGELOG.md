@@ -1,0 +1,1 @@
+# optum_telegraf_beacon CHANGELOG
