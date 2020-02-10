@@ -1,44 +1,40 @@
 require 'dalli'
 
-module Legion
-  module Extensions
-    module Memcached
-      module Runners
-        module Server
-          def client(payload)
-            Dalli::Client.new(payload[:server] || nil)
-          end
+module Legion::Extensions::Memcached
+  module Runners
+    module Server
+      def client(payload)
+        Dalli::Client.new(payload[:server] || nil)
+      end
 
-          def self.alive(payload)
-            { success: true, alive: client(payload).alive? }
-          rescue StandardError => e
-            { success: false, error: true, error_message: e.message }
-          end
+      def self.alive(server: nil, **opts)
+        { success: true, result: Dalli::Client.new(server).alive? }
+      rescue StandardError => e
+        Legion::Logging.runner_exception(e, server: server, **opts)
+      end
 
-          def self.flush(payload)
-            { success: true, flush: client(payload).flush(payload[:delay] || nil) }
-          rescue StandardError => e
-            { success: false, error: true, error_message: e.message }
-          end
+      def self.flush(delay: 0, server: nil, **opts)
+        { success: true, result: Dalli::Client.new(server).flush(delay) }
+      rescue StandardError => e
+        Legion::Logging.runner_exception(e, delay: delay, server: server, **opts)
+      end
 
-          def self.stats(payload)
-            { success: true, stats: client(payload).stats(payload[:delay] || nil) }
-          rescue StandardError => e
-            { success: false, error: true, error_message: e.message }
-          end
+      def self.stats(delay: 0, server: nil, **opts)
+        { success: true, result: Dalli::Client.new(server).stats(delay) }
+      rescue StandardError => e
+        Legion::Logging.runner_exception(e, delay: delay, server: server, **opts)
+      end
 
-          def self.reset_stats(payload)
-            { success: true, reset_stats: client(payload).reset_stats }
-          rescue StandardError => e
-            { success: false, error: true, error_message: e.message }
-          end
+      def self.reset_stats(server: nil, **opts)
+        { success: true, result: Dalli::Client.new(server).reset_stats }
+      rescue StandardError => e
+        Legion::Logging.runner_exception(e, server: server, **opts)
+      end
 
-          def self.version(payload)
-            { success: true, version: client(payload).version }
-          rescue StandardError => e
-            { success: false, error: true, error_message: e.message }
-          end
-        end
+      def self.version(server: nil, **opts)
+        { success: true, result: Dalli::Client.new(server).version }
+      rescue StandardError => e
+        Legion::Logging.runner_exception(e, server: server, **opts)
       end
     end
   end

@@ -1,12 +1,6 @@
-require 'legion/extensions/memcached/runners/item'
-
-module Legion
-  module Extensions
-    module Memcached
-      module Actor
-        class Item < Legion::Extensions::Actors::Subscription
-        end
-      end
+module Legion::Extensions::Memcached
+  module Actor
+    class Item < Legion::Extensions::Actors::Subscription
     end
   end
 end

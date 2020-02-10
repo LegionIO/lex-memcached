@@ -22,7 +22,7 @@ require 'legion/transport/connection'
 require 'legion/transport/exchange'
 require 'legion/transport/queue'
 require 'legion/transport/exchanges/task'
-Legion::Transport::Connection.new(create_new_session: true)
+Legion::Transport::Connection.new
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

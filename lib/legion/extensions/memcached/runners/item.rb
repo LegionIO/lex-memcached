@@ -1,56 +1,49 @@
 require 'dalli'
 
-module Legion
-  module Extensions
-    module Memcached
-      module Runners
-        module Item
-          def self.set(payload)
-            client = Dalli::Client.new(payload[:server] || nil)
-            client.set(payload[:key], payload[:value], payload[:ttl])
-            { success: true, key: payload[:key], value: payload[:value] }
-          rescue StandardError => e
-            { success: false, error: true, key: payload[:key], value: payload[:value], ex: { message: e.message } }
-          end
+module Legion::Extensions::Memcached
+  module Runners
+    module Item
+      def self.set(key:, value:, server: nil, **opts)
+        client = Dalli::Client.new(server)
+        client.set(key, value, opts[:ttl])
+        { success: true, key: key, value: value, server: server, **opts }
+      rescue StandardError => e
+        Legion::Logging.runner_exception(e, key: key, value: value, server: server, **opts)
+      end
 
-          def self.get(payload)
-            client = Dalli::Client.new(payload[:server] || nil)
-            { success: true, get: client.get(payload[:key]) }
-          rescue StandardError => e
-            { success: false, error: true, key: payload[:key], e: { message: e.message } }
-          end
+      def self.get(key:, server: nil, **opts)
+        client = Dalli::Client.new(server)
+        { success: true, get: client.get(key) }
+      rescue StandardError => e
+        Legion::Logging.runner_exception(e, key: key, server: server, **opts)
+      end
 
-          def self.fetch(payload)
-            client = Dalli::Client.new(payload[:server] || nil)
-            { success: true, fetch: client.fetch(payload[:key]) }
-          rescue StandardError => e
-            { success: false, error: true, key: payload[:key], e: { message: e.message } }
-          end
+      def self.fetch(key:, server: nil, **opts)
+        client = Dalli::Client.new(server)
+        { success: true, fetch: client.fetch(key) }
+      rescue StandardError => e
+        Legion::Logging.runner_exception(e, key: key, server: server, **opts)
+      end
 
-          def self.add(payload)
-            client = Dalli::Client.new(payload[:server] || nil)
-            { success: true, add: client.add(payload[:key], payload[:value], payload[:ttl]) }
-          rescue StandardError => e
-            { success: false,
-              error: true,
-              key: payload[:key],
-              value: payload[:value],
-              ttl: payload[:ttl],
-              e: { message: e.message } }
-          end
+      def self.add(key:, value:, server: nil, ttl:, **opts)
+        client = Dalli::Client.new(server)
+        { success: true, add: client.add(key, value, ttl) }
+      rescue StandardError => e
+        Legion::Logging.runner_exception(e, key: key, server: server, ttl: ttl, **opts)
+      end
 
-          def self.delete(payload)
-            client = Dalli::Client.new(payload[:server] || nil)
-            { success: true, delete: client.delete(payload[:key]) }
-          rescue StandardError => e
-            { success: false, error: true, key: payload[:key], e: { message: e.message } }
-          end
+      def self.delete(key:, server: nil, **opts)
+        client = Dalli::Client.new(server)
+        { success: true, delete: client.delete(key) }
+      rescue StandardError => e
+        Legion::Logging.runner_exception(e, key: key, server: server, **opts)
+      end
 
-          def self.append(payload)
-            client = Dalli::Client.new(payload[:server] || nil)
-            { success: true, append: client.append(payload[:key], payload[:value]) }
-          end
-        end
+      def self.append(key:, value:, server: nil, **opts)
+        client = Dalli::Client.new(server)
+        { success: true, append: client.append(key, value) }
+      rescue StandardError => e
+        Legion::Logging.runner_exception(e, key: key, value: value, server: server, **opts)
       end
     end
   end
