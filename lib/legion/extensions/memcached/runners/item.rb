@@ -11,27 +11,27 @@ module Legion::Extensions::Memcached
 
       def self.get(key:, server: nil, **opts)
         client = Dalli::Client.new(server)
-        { success: true, get: client.get(key) }
+        { success: true, get: client.get(key), **opts }
       end
 
       def self.fetch(key:, server: nil, **opts)
         client = Dalli::Client.new(server)
-        { success: true, fetch: client.fetch(key) }
+        { success: true, fetch: client.fetch(key), **opts }
       end
 
-      def self.add(key:, value:, server: nil, ttl:, **opts)
+      def self.add(key:, value:, ttl:, server: nil, **opts)
         client = Dalli::Client.new(server)
-        { success: true, add: client.add(key, value, ttl) }
+        { success: true, add: client.add(key, value, ttl), **opts }
       end
 
       def self.delete(key:, server: nil, **opts)
         client = Dalli::Client.new(server)
-        { success: true, delete: client.delete(key) }
+        { success: true, delete: client.delete(key), **opts }
       end
 
       def self.append(key:, value:, server: nil, **opts)
         client = Dalli::Client.new(server)
-        { success: true, append: client.append(key, value) }
+        { success: true, append: client.append(key, value), **opts }
       end
     end
   end

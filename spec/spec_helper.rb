@@ -12,17 +12,8 @@ rescue LoadError
 end
 
 require 'bundler/setup'
-require 'legion/extensions/memcached'
+require 'legion/logging'
 Legion::Logging.setup(level: 'error')
-
-require 'legion/settings'
-Legion::Settings.load
-require 'legion/transport'
-require 'legion/transport/connection'
-require 'legion/transport/exchange'
-require 'legion/transport/queue'
-require 'legion/transport/exchanges/task'
-Legion::Transport::Connection.new
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
