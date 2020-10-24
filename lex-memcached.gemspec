@@ -13,33 +13,25 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://bitbucket.org/legion-io/lex-memcached'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.5.0')
 
-  if spec.respond_to?(:metadata)
-    spec.metadata['homepage_uri'] = spec.homepage
-    spec.metadata['source_code_uri'] = 'https://bitbucket.org/legion-io/lex-memcached'
-    spec.metadata['changelog_uri'] = 'https://bitbucket.org/legion-io/lex-memcached/CHANGELOG.md'
-  else
-    raise 'RubyGems 2.0 or newer is required to protect against ' \
-      'public gem pushes.'
-  end
+  spec.metadata['homepage_uri'] = spec.homepage
+  spec.metadata['source_code_uri'] = 'https://bitbucket.org/legion-io/lex-memcached'
+  spec.metadata['documentation_uri'] = 'https://legionio.atlassian.net/wiki/spaces/LEX/pages/614858753'
+  spec.metadata['changelog_uri'] = 'https://legionio.atlassian.net/wiki/spaces/LEX/pages/614858760'
+  spec.metadata['bug_tracker_uri'] = 'https://bitbucket.org/legion-io/lex-memcached/issues'
 
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   end
-  spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'codecov'
   spec.add_development_dependency 'legionio'
-  spec.add_development_dependency 'legion-transport'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rspec_junit_formatter'
   spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'rubocop-md'
-  spec.add_development_dependency 'rubocop-performance'
-  spec.add_development_dependency 'rubocop-rspec'
 
   spec.add_dependency 'dalli'
 end
