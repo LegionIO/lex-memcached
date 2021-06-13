@@ -1,1 +1,2 @@
-# optum_telegraf_beacon CHANGELOG
+# LEX::Memcached Chanelog
+Updating for GitHub migration
