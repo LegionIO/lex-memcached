@@ -68,7 +68,8 @@ GEM
     rbtree (0.4.4)
     redis (4.3.1)
     regexp_parser (2.1.1)
-    rexml (3.2.5)
+    rexml (3.2.8)
+      strscan (>= 3.0.9)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -106,6 +107,7 @@ GEM
     sorted_set (1.0.3)
       rbtree
       set (~> 1.0)
+    strscan (3.1.0)
     thor (1.1.0)
     unicode-display_width (2.0.0)
     vault (0.16.0)
