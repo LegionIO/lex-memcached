@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Legion
   module Extensions
     module Memcached
-      VERSION = '0.1.3'.freeze
+      VERSION = '0.1.3'
     end
   end
 end

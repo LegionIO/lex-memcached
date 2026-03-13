@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # require 'legion/extensions/helpers/lex'
 # require 'legion/extensions/memcached/runners/item'
 
