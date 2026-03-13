@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = 'LEX::Memcached'
   spec.description   = 'LegionIO Extensions to connect to and manage memcached servers'
   spec.homepage      = 'https://github.com/LegionIO/lex-memcached'
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.5.0')
+  spec.required_ruby_version = '>= 3.4'
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://github.com/LegionIO/lex-memcached'
@@ -27,5 +27,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'legionio'
 
-  spec.add_dependency 'dalli'
+  spec.add_dependency 'dalli', '>= 3.0'
 end
