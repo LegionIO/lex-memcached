@@ -42,6 +42,16 @@ Legion::Extensions::Memcached
 | `delete` | `key:`, `server:` |
 | `append` | `key:`, `value:`, `server:` |
 
+## Runner: Server
+
+| Method | Parameters |
+|--------|-----------|
+| `alive` | `server:` |
+| `flush` | `delay:` (default: 0), `server:` |
+| `stats` | `delay:` (default: 0), `server:` |
+| `reset_stats` | `server:` |
+| `version` | `server:` |
+
 ## Dependencies
 
 | Gem | Purpose |
