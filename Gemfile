@@ -3,6 +3,8 @@
 source 'https://rubygems.org'
 gemspec
 
+gem 'legionio'
+
 group :test do
   gem 'rake'
   gem 'rspec'
