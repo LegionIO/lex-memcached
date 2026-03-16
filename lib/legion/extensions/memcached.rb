@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'legion/extensions/memcached/version'
+require 'legion/extensions/memcached/client'
 
 module Legion
   module Extensions
