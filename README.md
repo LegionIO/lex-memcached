@@ -14,6 +14,19 @@ Or add to your Gemfile:
 gem 'lex-memcached'
 ```
 
+## Standalone Usage
+
+```ruby
+require 'legion/extensions/memcached'
+
+client = Legion::Extensions::Memcached::Client.new(server: '10.0.0.1:11211')
+client.set(key: 'foo', value: 'bar', server: '10.0.0.1:11211', ttl: 300)
+client.get(key: 'foo', server: '10.0.0.1:11211')
+client.stats(server: '10.0.0.1:11211')
+```
+
+Constructor accepts `server:` (default `'127.0.0.1:11211'`).
+
 ## Runners
 
 | Runner | Methods |

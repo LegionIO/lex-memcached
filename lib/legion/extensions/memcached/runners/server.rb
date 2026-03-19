@@ -8,26 +8,26 @@ module Legion
           include Legion::Extensions::Memcached::Helpers::Client
 
           def alive(server: nil, **)
-            { success: true, result: client(server: server, **).alive?, **opts }
+            { success: true, result: client(server: server, **).alive? }
           end
 
-          def flush(delay: 0, server: nil, **opts)
-            { success: true, result: Dalli::Client.new(server).flush(delay), **opts }
+          def flush(server: nil, delay: 0, **)
+            { success: true, result: client(server: server, **).flush(delay) }
           end
 
           def stats(delay: 0, server: nil, **)
-            { success: true, result: client(server: server, **).stats(delay), **opts }
+            { success: true, result: client(server: server, **).stats(delay) }
           end
 
           def reset_stats(server: nil, **)
-            { success: true, result: client(server: server, **).reset_stats, **opts }
+            { success: true, result: client(server: server, **).reset_stats }
           end
 
           def version(server: nil, **)
-            { success: true, result: client(server: server, **).version, **opts }
+            { success: true, result: client(server: server, **).version }
           end
 
-          include Legion::Extensions::Helpers::Lex
+          include Legion::Extensions::Helpers::Lex if defined?(Legion::Extensions::Helpers::Lex)
         end
       end
     end

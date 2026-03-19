@@ -13,6 +13,7 @@ Gem::Specification.new do |spec|
   spec.summary       = 'LEX::Memcached'
   spec.description   = 'LegionIO Extensions to connect to and manage memcached servers'
   spec.homepage      = 'https://github.com/LegionIO/lex-memcached'
+  spec.license       = 'MIT'
   spec.required_ruby_version = '>= 3.4'
 
   spec.metadata['homepage_uri'] = spec.homepage

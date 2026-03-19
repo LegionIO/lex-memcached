@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.1] - 2026-03-18
+
+### Fixed
+- `runners/item.rb`: named anonymous `**` splat as `**opts` in `get`, `fetch`, `add`, `delete`, and `append` methods to fix `NameError` at runtime
+- `runners/server.rb`: `flush` now uses `client(server: server, **opts)` helper instead of bypassing it with `Dalli::Client.new` directly
+- Added `if defined?(Legion::Extensions::Helpers::Lex)` guard to both runner files for standalone loading
+
+### Added
+- `spec.license = 'MIT'` in gemspec
+- `Gemfile.lock` added to `.gitignore`
+- Uncommented and fully implemented specs for `Runners::Item`, `Runners::Server`, and `Helpers::Client`
+- Entry point `memcached.rb` now requires helpers and runners explicitly
+
 ## [0.2.0] - 2026-03-15
 
 ### Added
