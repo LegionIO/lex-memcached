@@ -8,7 +8,7 @@
 
 Legion Extension that connects LegionIO to Memcached servers. Provides runners for item-level cache operations and server management through the Dalli client. Also includes a standalone `Client` class for use outside the Legion runtime.
 
-**Version**: 0.2.0
+**Version**: 0.2.1
 
 **GitHub**: https://github.com/LegionIO/lex-memcached
 **License**: MIT
@@ -68,7 +68,7 @@ mc.set(key: 'foo', value: 'bar', server: '10.0.0.1:11211', ttl: 300)
 mc.get(key: 'foo', server: '10.0.0.1:11211')
 ```
 
-Per-call connection options can be overridden; the `client` method merges instance opts with any call-level overrides before building the `Dalli::Client`.
+The `client` method on the standalone Client builds a `Dalli::Client` directly, merging instance opts with per-call overrides.
 
 ## Dependencies
 
@@ -77,6 +77,8 @@ Per-call connection options can be overridden; the `client` method merges instan
 | `dalli` (>= 3.0) | Memcached Ruby client |
 
 ## Development
+
+42 specs total.
 
 ```bash
 bundle install
