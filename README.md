@@ -48,8 +48,8 @@ Constructor accepts `server:` (default `'127.0.0.1:11211'`).
 ## Requirements
 
 - Ruby >= 3.4
-- [LegionIO](https://github.com/LegionIO/LegionIO) framework
 - Memcached server
+- [LegionIO](https://github.com/LegionIO/LegionIO) framework (optional — standalone Client works without it)
 
 ## License
 
