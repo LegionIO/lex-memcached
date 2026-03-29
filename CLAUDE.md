@@ -8,7 +8,7 @@
 
 Legion Extension that connects LegionIO to Memcached servers. Provides runners for item-level cache operations and server management through the Dalli client. Also includes a standalone `Client` class for use outside the Legion runtime.
 
-**Version**: 0.2.1
+**Version**: 0.2.2
 
 **GitHub**: https://github.com/LegionIO/lex-memcached
 **License**: MIT
